@@ -1,0 +1,11 @@
+agentType: prometheus
+type: exporter
+
+name: jmx_collector_plugin
+version: 1.0.0
+
+category: 中间件
+params:
+    - jar_path
+    - exporter_host
+    - exporter_port
