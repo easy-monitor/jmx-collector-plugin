@@ -81,4 +81,11 @@ do
     esac
 done
 
-nohup java -javaagent:./src/jmx_prometheus_javaagent.jar=$exporter_host:$exporter_port:./src/jmx.yaml -jar $jar_path > /dev/null 2>&1 & echo $! > exporter.pid
+if [ -f exporter.pid ]; then
+    echo "The JMX exporter has already started."
+    exit 0
+fi
+
+java -javaagent:./src/jmx_prometheus_javaagent.jar=$exporter_host:$exporter_port:./src/jmx.yaml -jar $jar_path &
+
+echo $! > exporter.pid
