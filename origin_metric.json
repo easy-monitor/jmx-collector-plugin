@@ -1,14 +1,108 @@
 [
     {
         "agentType": "prometheus",
-        "help": "Number of open file descriptors.",
-        "key": "process_open_fds",
-        "name": "prometheus-process_open_fds",
+        "help": "ProcessCpuTime (java.lang<type=OperatingSystem><>ProcessCpuTime)",
+        "key": "java_lang_OperatingSystem_ProcessCpuTime",
+        "name": "prometheus-java_lang_OperatingSystem_ProcessCpuTime",
         "data_type": "double",
         "metric_type": "gauge",
         "paramDefine": [],
         "tagDefine": [],
         "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Peak thread count of a JVM",
+        "key": "jvm_threads_peak",
+        "name": "prometheus-jvm_threads_peak",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "CompositeType for GC info for PS Scavenge (java.lang<type=GarbageCollector, name=PS Scavenge><LastGcInfo>endTime)",
+        "key": "java_lang_GarbageCollector_LastGcInfo_endTime",
+        "name": "prometheus-java_lang_GarbageCollector_LastGcInfo_endTime",
+        "paramDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Metaspace><PeakUsage>init)",
+        "key": "java_lang_MemoryPool_PeakUsage_init",
+        "name": "prometheus-java_lang_MemoryPool_PeakUsage_init",
+        "paramDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "OpenFileDescriptorCount (java.lang<type=OperatingSystem><>OpenFileDescriptorCount)",
+        "key": "java_lang_OperatingSystem_OpenFileDescriptorCount",
+        "name": "prometheus-java_lang_OperatingSystem_OpenFileDescriptorCount",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Committed (bytes) of a given JVM memory area.",
+        "key": "jvm_memory_bytes_committed",
+        "name": "prometheus-jvm_memory_bytes_committed",
+        "paramDefine": [
+            {
+                "default": "heap",
+                "name": "area",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "heap",
+                "name": "area",
+                "readOnly": false
+            }
+        ],
+        "unit": "bytes",
+        "data_type": "double",
+        "metric_type": "gauge"
     },
     {
         "agentType": "prometheus",
@@ -23,14 +117,662 @@
     },
     {
         "agentType": "prometheus",
-        "help": "Virtual memory size in bytes.",
-        "key": "process_virtual_memory_bytes",
-        "name": "prometheus-process_virtual_memory_bytes",
-        "unit": "bytes",
+        "help": "UnloadedClassCount (java.lang<type=ClassLoading><>UnloadedClassCount)",
+        "key": "java_lang_ClassLoading_UnloadedClassCount",
+        "name": "prometheus-java_lang_ClassLoading_UnloadedClassCount",
         "data_type": "double",
         "metric_type": "gauge",
         "paramDefine": [],
-        "tagDefine": []
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Valid (java.lang<type=MemoryManager, name=CodeCacheManager><>Valid)",
+        "key": "java_lang_MemoryManager_Valid",
+        "name": "prometheus-java_lang_MemoryManager_Valid",
+        "paramDefine": [
+            {
+                "default": "CodeCacheManager",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "CodeCacheManager",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS Scavenge, key=Compressed Class Space><LastGcInfo, memoryUsageAfterGc>init)",
+        "key": "java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init",
+        "name": "prometheus-java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init",
+        "paramDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            },
+            {
+                "default": "Compressed Class Space",
+                "name": "key",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false
+            },
+            {
+                "default": "Compressed Class Space",
+                "name": "key",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "CollectionTime (java.lang<type=GarbageCollector, name=PS Scavenge><>CollectionTime)",
+        "key": "java_lang_GarbageCollector_CollectionTime",
+        "name": "prometheus-java_lang_GarbageCollector_CollectionTime",
+        "paramDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "SystemLoadAverage (java.lang<type=OperatingSystem><>SystemLoadAverage)",
+        "key": "java_lang_OperatingSystem_SystemLoadAverage",
+        "name": "prometheus-java_lang_OperatingSystem_SystemLoadAverage",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Current thread count of a JVM",
+        "key": "jvm_threads_current",
+        "name": "prometheus-jvm_threads_current",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=Memory><HeapMemoryUsage>used)",
+        "key": "java_lang_Memory_HeapMemoryUsage_used",
+        "name": "prometheus-java_lang_Memory_HeapMemoryUsage_used",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS Scavenge, key=Compressed Class Space><LastGcInfo, memoryUsageBeforeGc>max)",
+        "key": "java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max",
+        "name": "prometheus-java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max",
+        "paramDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            },
+            {
+                "default": "Compressed Class Space",
+                "name": "key",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false
+            },
+            {
+                "default": "Compressed Class Space",
+                "name": "key",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "CompositeType for GC info for PS Scavenge (java.lang<type=GarbageCollector, name=PS Scavenge><LastGcInfo>id)",
+        "key": "java_lang_GarbageCollector_LastGcInfo_id",
+        "name": "prometheus-java_lang_GarbageCollector_LastGcInfo_id",
+        "paramDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Metaspace><Usage>max)",
+        "key": "java_lang_MemoryPool_Usage_max",
+        "name": "prometheus-java_lang_MemoryPool_Usage_max",
+        "paramDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Number of times configuration have failed to be reloaded.",
+        "key": "jmx_config_reload_failure_total",
+        "name": "prometheus-jmx_config_reload_failure_total",
+        "data_type": "double",
+        "metric_type": "counter",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Verbose (java.lang<type=ClassLoading><>Verbose)",
+        "key": "java_lang_ClassLoading_Verbose",
+        "name": "prometheus-java_lang_ClassLoading_Verbose",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "CurrentThreadCpuTime (java.lang<type=Threading><>CurrentThreadCpuTime)",
+        "key": "java_lang_Threading_CurrentThreadCpuTime",
+        "name": "prometheus-java_lang_Threading_CurrentThreadCpuTime",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "DaemonThreadCount (java.lang<type=Threading><>DaemonThreadCount)",
+        "key": "java_lang_Threading_DaemonThreadCount",
+        "name": "prometheus-java_lang_Threading_DaemonThreadCount",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "ThreadAllocatedMemorySupported (java.lang<type=Threading><>ThreadAllocatedMemorySupported)",
+        "key": "java_lang_Threading_ThreadAllocatedMemorySupported",
+        "name": "prometheus-java_lang_Threading_ThreadAllocatedMemorySupported",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "CollectionUsageThresholdExceeded (java.lang<type=MemoryPool, name=PS Old Gen><>CollectionUsageThresholdExceeded)",
+        "key": "java_lang_MemoryPool_CollectionUsageThresholdExceeded",
+        "name": "prometheus-java_lang_MemoryPool_CollectionUsageThresholdExceeded",
+        "paramDefine": [
+            {
+                "default": "PS Old Gen",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Old Gen",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Used bytes of a given JVM memory area.",
+        "key": "jvm_memory_bytes_used",
+        "name": "prometheus-jvm_memory_bytes_used",
+        "paramDefine": [
+            {
+                "default": "heap",
+                "name": "area",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "heap",
+                "name": "area",
+                "readOnly": false
+            }
+        ],
+        "unit": "bytes",
+        "data_type": "double",
+        "metric_type": "gauge"
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Daemon thread count of a JVM",
+        "key": "jvm_threads_daemon",
+        "name": "prometheus-jvm_threads_daemon",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "ObjectMonitorUsageSupported (java.lang<type=Threading><>ObjectMonitorUsageSupported)",
+        "key": "java_lang_Threading_ObjectMonitorUsageSupported",
+        "name": "prometheus-java_lang_Threading_ObjectMonitorUsageSupported",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "AvailableProcessors (java.lang<type=OperatingSystem><>AvailableProcessors)",
+        "key": "java_lang_OperatingSystem_AvailableProcessors",
+        "name": "prometheus-java_lang_OperatingSystem_AvailableProcessors",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "BootClassPathSupported (java.lang<type=Runtime><>BootClassPathSupported)",
+        "key": "java_lang_Runtime_BootClassPathSupported",
+        "name": "prometheus-java_lang_Runtime_BootClassPathSupported",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "CompilationTimeMonitoringSupported (java.lang<type=Compilation><>CompilationTimeMonitoringSupported)",
+        "key": "java_lang_Compilation_CompilationTimeMonitoringSupported",
+        "name": "prometheus-java_lang_Compilation_CompilationTimeMonitoringSupported",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "The number of classes that are currently loaded in the JVM",
+        "key": "jvm_classes_loaded",
+        "name": "prometheus-jvm_classes_loaded",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=Memory><NonHeapMemoryUsage>committed)",
+        "key": "java_lang_Memory_NonHeapMemoryUsage_committed",
+        "name": "prometheus-java_lang_Memory_NonHeapMemoryUsage_committed",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Committed bytes of a given JVM memory pool.",
+        "key": "jvm_memory_pool_bytes_committed",
+        "name": "prometheus-jvm_memory_pool_bytes_committed",
+        "paramDefine": [
+            {
+                "default": "Code Cache",
+                "name": "pool",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "Code Cache",
+                "name": "pool",
+                "readOnly": false
+            }
+        ],
+        "unit": "bytes",
+        "data_type": "double",
+        "metric_type": "gauge"
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS Scavenge, key=Compressed Class Space><LastGcInfo, memoryUsageBeforeGc>used)",
+        "key": "java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used",
+        "name": "prometheus-java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used",
+        "paramDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            },
+            {
+                "default": "Compressed Class Space",
+                "name": "key",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false
+            },
+            {
+                "default": "Compressed Class Space",
+                "name": "key",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "ThreadAllocatedMemoryEnabled (java.lang<type=Threading><>ThreadAllocatedMemoryEnabled)",
+        "key": "java_lang_Threading_ThreadAllocatedMemoryEnabled",
+        "name": "prometheus-java_lang_Threading_ThreadAllocatedMemoryEnabled",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS Scavenge, key=Compressed Class Space><LastGcInfo, memoryUsageAfterGc>max)",
+        "key": "java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max",
+        "name": "prometheus-java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max",
+        "paramDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            },
+            {
+                "default": "Compressed Class Space",
+                "name": "key",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false
+            },
+            {
+                "default": "Compressed Class Space",
+                "name": "key",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "CollectionUsageThresholdCount (java.lang<type=MemoryPool, name=PS Old Gen><>CollectionUsageThresholdCount)",
+        "key": "java_lang_MemoryPool_CollectionUsageThresholdCount",
+        "name": "prometheus-java_lang_MemoryPool_CollectionUsageThresholdCount",
+        "paramDefine": [
+            {
+                "default": "PS Old Gen",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Old Gen",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Max bytes of a given JVM memory pool.",
+        "key": "jvm_memory_pool_bytes_max",
+        "name": "prometheus-jvm_memory_pool_bytes_max",
+        "paramDefine": [
+            {
+                "default": "Code Cache",
+                "name": "pool",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "Code Cache",
+                "name": "pool",
+                "readOnly": false
+            }
+        ],
+        "unit": "bytes",
+        "data_type": "double",
+        "metric_type": "gauge"
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS Scavenge, key=Compressed Class Space><LastGcInfo, memoryUsageAfterGc>committed)",
+        "key": "java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed",
+        "name": "prometheus-java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed",
+        "paramDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            },
+            {
+                "default": "Compressed Class Space",
+                "name": "key",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false
+            },
+            {
+                "default": "Compressed Class Space",
+                "name": "key",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "JVM version info",
+        "key": "jvm_info",
+        "name": "prometheus-jvm_info",
+        "paramDefine": [
+            {
+                "default": "1.8.0_151-b12",
+                "name": "version",
+                "readOnly": false,
+                "valueType": "string"
+            },
+            {
+                "default": "Oracle Corporation",
+                "name": "vendor",
+                "readOnly": false,
+                "valueType": "string"
+            },
+            {
+                "default": "Java(TM) SE Runtime Environment",
+                "name": "runtime",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "1.8.0_151-b12",
+                "name": "version",
+                "readOnly": false
+            },
+            {
+                "default": "Oracle Corporation",
+                "name": "vendor",
+                "readOnly": false
+            },
+            {
+                "default": "Java(TM) SE Runtime Environment",
+                "name": "runtime",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Metaspace><PeakUsage>max)",
+        "key": "java_lang_MemoryPool_PeakUsage_max",
+        "name": "prometheus-java_lang_MemoryPool_PeakUsage_max",
+        "paramDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Verbose (java.lang<type=Memory><>Verbose)",
+        "key": "java_lang_Memory_Verbose",
+        "name": "prometheus-java_lang_Memory_Verbose",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
     },
     {
         "agentType": "prometheus",
@@ -45,9 +787,68 @@
     },
     {
         "agentType": "prometheus",
-        "help": "Maximum number of open file descriptors.",
-        "key": "process_max_fds",
-        "name": "prometheus-process_max_fds",
+        "help": "Started thread count of a JVM",
+        "key": "jvm_threads_started_total",
+        "name": "prometheus-jvm_threads_started_total",
+        "data_type": "double",
+        "metric_type": "counter",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Metaspace><Usage>committed)",
+        "key": "java_lang_MemoryPool_Usage_committed",
+        "name": "prometheus-java_lang_MemoryPool_Usage_committed",
+        "paramDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "UsageThresholdSupported (java.lang<type=MemoryPool, name=Metaspace><>UsageThresholdSupported)",
+        "key": "java_lang_MemoryPool_UsageThresholdSupported",
+        "name": "prometheus-java_lang_MemoryPool_UsageThresholdSupported",
+        "paramDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "ThreadCount (java.lang<type=Threading><>ThreadCount)",
+        "key": "java_lang_Threading_ThreadCount",
+        "name": "prometheus-java_lang_Threading_ThreadCount",
         "data_type": "double",
         "metric_type": "gauge",
         "paramDefine": [],
@@ -56,20 +857,44 @@
     },
     {
         "agentType": "prometheus",
-        "help": "Total user and system CPU time spent in seconds.",
-        "key": "process_cpu_seconds_total",
-        "name": "prometheus-process_cpu_seconds_total",
-        "unit": "seconds",
+        "help": "The total number of classes that have been unloaded since the JVM has started execution",
+        "key": "jvm_classes_unloaded_total",
+        "name": "prometheus-jvm_classes_unloaded_total",
         "data_type": "double",
         "metric_type": "counter",
         "paramDefine": [],
-        "tagDefine": []
+        "tagDefine": [],
+        "unit": ""
     },
     {
         "agentType": "prometheus",
-        "help": "Used buffers of a given JVM buffer pool.",
-        "key": "jvm_buffer_pool_used_buffers",
-        "name": "prometheus-jvm_buffer_pool_used_buffers",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=PS Old Gen><CollectionUsage>committed)",
+        "key": "java_lang_MemoryPool_CollectionUsage_committed",
+        "name": "prometheus-java_lang_MemoryPool_CollectionUsage_committed",
+        "paramDefine": [
+            {
+                "default": "PS Old Gen",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Old Gen",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Used bytes of a given JVM buffer pool.",
+        "key": "jvm_buffer_pool_used_bytes",
+        "name": "prometheus-jvm_buffer_pool_used_bytes",
         "paramDefine": [
             {
                 "default": "direct",
@@ -85,20 +910,590 @@
                 "readOnly": false
             }
         ],
+        "unit": "bytes",
+        "data_type": "double",
+        "metric_type": "gauge"
+    },
+    {
+        "agentType": "prometheus",
+        "help": "SynchronizerUsageSupported (java.lang<type=Threading><>SynchronizerUsageSupported)",
+        "key": "java_lang_Threading_SynchronizerUsageSupported",
+        "name": "prometheus-java_lang_Threading_SynchronizerUsageSupported",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Number of times configuration have successfully been reloaded.",
+        "key": "jmx_config_reload_success_total",
+        "name": "prometheus-jmx_config_reload_success_total",
+        "data_type": "double",
+        "metric_type": "counter",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Metaspace><Usage>init)",
+        "key": "java_lang_MemoryPool_Usage_init",
+        "name": "prometheus-java_lang_MemoryPool_Usage_init",
+        "paramDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
         "data_type": "double",
         "metric_type": "gauge",
         "unit": ""
     },
     {
         "agentType": "prometheus",
-        "help": "Cycles of JVM-threads that are in deadlock waiting to acquire object monitors or ownable synchronizers",
-        "key": "jvm_threads_deadlocked",
-        "name": "prometheus-jvm_threads_deadlocked",
+        "help": "CollectionUsageThreshold (java.lang<type=MemoryPool, name=PS Old Gen><>CollectionUsageThreshold)",
+        "key": "java_lang_MemoryPool_CollectionUsageThreshold",
+        "name": "prometheus-java_lang_MemoryPool_CollectionUsageThreshold",
+        "paramDefine": [
+            {
+                "default": "PS Old Gen",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Old Gen",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Initial bytes of a given JVM memory pool.",
+        "key": "jvm_memory_pool_bytes_init",
+        "name": "prometheus-jvm_memory_pool_bytes_init",
+        "paramDefine": [
+            {
+                "default": "Code Cache",
+                "name": "pool",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "Code Cache",
+                "name": "pool",
+                "readOnly": false
+            }
+        ],
+        "unit": "bytes",
+        "data_type": "double",
+        "metric_type": "gauge"
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Used bytes of a given JVM memory pool.",
+        "key": "jvm_memory_pool_bytes_used",
+        "name": "prometheus-jvm_memory_pool_bytes_used",
+        "paramDefine": [
+            {
+                "default": "Code Cache",
+                "name": "pool",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "Code Cache",
+                "name": "pool",
+                "readOnly": false
+            }
+        ],
+        "unit": "bytes",
+        "data_type": "double",
+        "metric_type": "gauge"
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS Scavenge, key=Compressed Class Space><LastGcInfo, memoryUsageAfterGc>used)",
+        "key": "java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used",
+        "name": "prometheus-java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used",
+        "paramDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            },
+            {
+                "default": "Compressed Class Space",
+                "name": "key",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false
+            },
+            {
+                "default": "Compressed Class Space",
+                "name": "key",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "ThreadContentionMonitoringSupported (java.lang<type=Threading><>ThreadContentionMonitoringSupported)",
+        "key": "java_lang_Threading_ThreadContentionMonitoringSupported",
+        "name": "prometheus-java_lang_Threading_ThreadContentionMonitoringSupported",
         "data_type": "double",
         "metric_type": "gauge",
         "paramDefine": [],
         "tagDefine": [],
         "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "TotalCapacity (java.nio<type=BufferPool, name=direct><>TotalCapacity)",
+        "key": "java_nio_BufferPool_TotalCapacity",
+        "name": "prometheus-java_nio_BufferPool_TotalCapacity",
+        "paramDefine": [
+            {
+                "default": "direct",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "direct",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "TotalSwapSpaceSize (java.lang<type=OperatingSystem><>TotalSwapSpaceSize)",
+        "key": "java_lang_OperatingSystem_TotalSwapSpaceSize",
+        "name": "prometheus-java_lang_OperatingSystem_TotalSwapSpaceSize",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Maximum number of open file descriptors.",
+        "key": "process_max_fds",
+        "name": "prometheus-process_max_fds",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=Memory><HeapMemoryUsage>init)",
+        "key": "java_lang_Memory_HeapMemoryUsage_init",
+        "name": "prometheus-java_lang_Memory_HeapMemoryUsage_init",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Metaspace><PeakUsage>used)",
+        "key": "java_lang_MemoryPool_PeakUsage_used",
+        "name": "prometheus-java_lang_MemoryPool_PeakUsage_used",
+        "paramDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "CompositeType for GC info for PS Scavenge (java.lang<type=GarbageCollector, name=PS Scavenge><LastGcInfo>startTime)",
+        "key": "java_lang_GarbageCollector_LastGcInfo_startTime",
+        "name": "prometheus-java_lang_GarbageCollector_LastGcInfo_startTime",
+        "paramDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "ThreadCpuTimeEnabled (java.lang<type=Threading><>ThreadCpuTimeEnabled)",
+        "key": "java_lang_Threading_ThreadCpuTimeEnabled",
+        "name": "prometheus-java_lang_Threading_ThreadCpuTimeEnabled",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Valid (java.lang<type=GarbageCollector, name=PS Scavenge><>Valid)",
+        "key": "java_lang_GarbageCollector_Valid",
+        "name": "prometheus-java_lang_GarbageCollector_Valid",
+        "paramDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "ProcessCpuLoad (java.lang<type=OperatingSystem><>ProcessCpuLoad)",
+        "key": "java_lang_OperatingSystem_ProcessCpuLoad",
+        "name": "prometheus-java_lang_OperatingSystem_ProcessCpuLoad",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "FreeSwapSpaceSize (java.lang<type=OperatingSystem><>FreeSwapSpaceSize)",
+        "key": "java_lang_OperatingSystem_FreeSwapSpaceSize",
+        "name": "prometheus-java_lang_OperatingSystem_FreeSwapSpaceSize",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "calculated",
+        "help": "UsedSwapSpacePercentage",
+        "key": "java_lang_OperatingSystem_UsedSwapSpacePercentage",
+        "name": "prometheus-java_lang_OperatingSystem_UsedSwapSpacePercentage",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": "",
+        "expression": "100 - java_lang_OperatingSystem_FreeSwapSpaceSize / java_lang_OperatingSystem_TotalSwapSpaceSize"
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Number of open file descriptors.",
+        "key": "process_open_fds",
+        "name": "prometheus-process_open_fds",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "UsageThresholdCount (java.lang<type=MemoryPool, name=Metaspace><>UsageThresholdCount)",
+        "key": "java_lang_MemoryPool_UsageThresholdCount",
+        "name": "prometheus-java_lang_MemoryPool_UsageThresholdCount",
+        "paramDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Metaspace><Usage>used)",
+        "key": "java_lang_MemoryPool_Usage_used",
+        "name": "prometheus-java_lang_MemoryPool_Usage_used",
+        "paramDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Virtual memory size in bytes.",
+        "key": "process_virtual_memory_bytes",
+        "name": "prometheus-process_virtual_memory_bytes",
+        "unit": "bytes",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": []
+    },
+    {
+        "agentType": "prometheus",
+        "help": "UsageThreshold (java.lang<type=MemoryPool, name=Metaspace><>UsageThreshold)",
+        "key": "java_lang_MemoryPool_UsageThreshold",
+        "name": "prometheus-java_lang_MemoryPool_UsageThreshold",
+        "paramDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Uptime (java.lang<type=Runtime><>Uptime)",
+        "key": "java_lang_Runtime_Uptime",
+        "name": "prometheus-java_lang_Runtime_Uptime",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Initial bytes of a given JVM memory area.",
+        "key": "jvm_memory_bytes_init",
+        "name": "prometheus-jvm_memory_bytes_init",
+        "paramDefine": [
+            {
+                "default": "heap",
+                "name": "area",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "heap",
+                "name": "area",
+                "readOnly": false
+            }
+        ],
+        "unit": "bytes",
+        "data_type": "double",
+        "metric_type": "gauge"
+    },
+    {
+        "agentType": "prometheus",
+        "help": "CurrentThreadUserTime (java.lang<type=Threading><>CurrentThreadUserTime)",
+        "key": "java_lang_Threading_CurrentThreadUserTime",
+        "name": "prometheus-java_lang_Threading_CurrentThreadUserTime",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=Memory><HeapMemoryUsage>max)",
+        "key": "java_lang_Memory_HeapMemoryUsage_max",
+        "name": "prometheus-java_lang_Memory_HeapMemoryUsage_max",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "UsageThresholdExceeded (java.lang<type=MemoryPool, name=Metaspace><>UsageThresholdExceeded)",
+        "key": "java_lang_MemoryPool_UsageThresholdExceeded",
+        "name": "prometheus-java_lang_MemoryPool_UsageThresholdExceeded",
+        "paramDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=Memory><NonHeapMemoryUsage>init)",
+        "key": "java_lang_Memory_NonHeapMemoryUsage_init",
+        "name": "prometheus-java_lang_Memory_NonHeapMemoryUsage_init",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "CompositeType for GC info for PS Scavenge (java.lang<type=GarbageCollector, name=PS Scavenge><LastGcInfo>duration)",
+        "key": "java_lang_GarbageCollector_LastGcInfo_duration",
+        "name": "prometheus-java_lang_GarbageCollector_LastGcInfo_duration",
+        "paramDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "TotalCompilationTime (java.lang<type=Compilation><>TotalCompilationTime)",
+        "key": "java_lang_Compilation_TotalCompilationTime",
+        "name": "prometheus-java_lang_Compilation_TotalCompilationTime",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Cycles of JVM-threads that are in deadlock waiting to acquire object monitors",
+        "key": "jvm_threads_deadlocked_monitor",
+        "name": "prometheus-jvm_threads_deadlocked_monitor",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Time this JMX scrape took, in seconds.",
+        "key": "jmx_scrape_duration_seconds",
+        "name": "prometheus-jmx_scrape_duration_seconds",
+        "unit": "seconds",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": []
     },
     {
         "agentType": "prometheus",
@@ -137,27 +1532,508 @@
     },
     {
         "agentType": "prometheus",
-        "help": "Initial bytes of a given JVM memory area.",
-        "key": "jvm_memory_bytes_init",
-        "name": "prometheus-jvm_memory_bytes_init",
+        "help": "ThreadContentionMonitoringEnabled (java.lang<type=Threading><>ThreadContentionMonitoringEnabled)",
+        "key": "java_lang_Threading_ThreadContentionMonitoringEnabled",
+        "name": "prometheus-java_lang_Threading_ThreadContentionMonitoringEnabled",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "MemoryUsed (java.nio<type=BufferPool, name=direct><>MemoryUsed)",
+        "key": "java_nio_BufferPool_MemoryUsed",
+        "name": "prometheus-java_nio_BufferPool_MemoryUsed",
         "paramDefine": [
             {
-                "default": "heap",
-                "name": "area",
+                "default": "direct",
+                "name": "name",
                 "readOnly": false,
                 "valueType": "string"
             }
         ],
         "tagDefine": [
             {
-                "default": "heap",
-                "name": "area",
+                "default": "direct",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "The total number of classes that have been loaded since the JVM has started execution",
+        "key": "jvm_classes_loaded_total",
+        "name": "prometheus-jvm_classes_loaded_total",
+        "data_type": "double",
+        "metric_type": "counter",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "TotalStartedThreadCount (java.lang<type=Threading><>TotalStartedThreadCount)",
+        "key": "java_lang_Threading_TotalStartedThreadCount",
+        "name": "prometheus-java_lang_Threading_TotalStartedThreadCount",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Current count of threads by state",
+        "key": "jvm_threads_state",
+        "name": "prometheus-jvm_threads_state",
+        "paramDefine": [
+            {
+                "default": "RUNNABLE",
+                "name": "state",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "RUNNABLE",
+                "name": "state",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Metaspace><PeakUsage>committed)",
+        "key": "java_lang_MemoryPool_PeakUsage_committed",
+        "name": "prometheus-java_lang_MemoryPool_PeakUsage_committed",
+        "paramDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=Memory><NonHeapMemoryUsage>used)",
+        "key": "java_lang_Memory_NonHeapMemoryUsage_used",
+        "name": "prometheus-java_lang_Memory_NonHeapMemoryUsage_used",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "SystemCpuLoad (java.lang<type=OperatingSystem><>SystemCpuLoad)",
+        "key": "java_lang_OperatingSystem_SystemCpuLoad",
+        "name": "prometheus-java_lang_OperatingSystem_SystemCpuLoad",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "calculated",
+        "help": "SystemCpuLoad in 1 minute",
+        "key": "java_lang_OperatingSystem_SystemCpuLoad_1m",
+        "name": "prometheus-java_lang_OperatingSystem_SystemCpuLoad_1m",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": "",
+        "expression": "avg_over_time(java_lang_OperatingSystem_SystemCpuLoad[1m]) * 100"
+    },
+    {
+        "agentType": "calculated",
+        "help": "SystemCpuLoad in 5 minute",
+        "key": "java_lang_OperatingSystem_SystemCpuLoad_5m",
+        "name": "prometheus-java_lang_OperatingSystem_SystemCpuLoad_5m",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": "",
+        "expression": "avg_over_time(java_lang_OperatingSystem_SystemCpuLoad[5m]) * 100"
+    },
+    {
+        "agentType": "prometheus",
+        "help": "CollectionUsageThresholdSupported (java.lang<type=MemoryPool, name=Metaspace><>CollectionUsageThresholdSupported)",
+        "key": "java_lang_MemoryPool_CollectionUsageThresholdSupported",
+        "name": "prometheus-java_lang_MemoryPool_CollectionUsageThresholdSupported",
+        "paramDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Time spent in a given JVM garbage collector in seconds.",
+        "key": "jvm_gc_collection_seconds",
+        "name": "prometheus-jvm_gc_collection_seconds",
+        "tagDefine": [
+            {
+                "name": "_key_type",
+                "readOnly": false
+            }
+        ],
+        "unit": "seconds",
+        "data_type": "double",
+        "metric_type": "summary",
+        "paramDefine": []
+    },
+    {
+        "agentType": "prometheus",
+        "help": "CurrentThreadCpuTimeSupported (java.lang<type=Threading><>CurrentThreadCpuTimeSupported)",
+        "key": "java_lang_Threading_CurrentThreadCpuTimeSupported",
+        "name": "prometheus-java_lang_Threading_CurrentThreadCpuTimeSupported",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "TotalLoadedClassCount (java.lang<type=ClassLoading><>TotalLoadedClassCount)",
+        "key": "java_lang_ClassLoading_TotalLoadedClassCount",
+        "name": "prometheus-java_lang_ClassLoading_TotalLoadedClassCount",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Used buffers of a given JVM buffer pool.",
+        "key": "jvm_buffer_pool_used_buffers",
+        "name": "prometheus-jvm_buffer_pool_used_buffers",
+        "paramDefine": [
+            {
+                "default": "direct",
+                "name": "pool",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "direct",
+                "name": "pool",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "ThreadCpuTimeSupported (java.lang<type=Threading><>ThreadCpuTimeSupported)",
+        "key": "java_lang_Threading_ThreadCpuTimeSupported",
+        "name": "prometheus-java_lang_Threading_ThreadCpuTimeSupported",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=PS Old Gen><CollectionUsage>max)",
+        "key": "java_lang_MemoryPool_CollectionUsage_max",
+        "name": "prometheus-java_lang_MemoryPool_CollectionUsage_max",
+        "paramDefine": [
+            {
+                "default": "PS Old Gen",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Old Gen",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Bytes capacity of a given JVM buffer pool.",
+        "key": "jvm_buffer_pool_capacity_bytes",
+        "name": "prometheus-jvm_buffer_pool_capacity_bytes",
+        "paramDefine": [
+            {
+                "default": "direct",
+                "name": "pool",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "direct",
+                "name": "pool",
                 "readOnly": false
             }
         ],
         "unit": "bytes",
         "data_type": "double",
         "metric_type": "gauge"
+    },
+    {
+        "agentType": "prometheus",
+        "help": "ObjectPendingFinalizationCount (java.lang<type=Memory><>ObjectPendingFinalizationCount)",
+        "key": "java_lang_Memory_ObjectPendingFinalizationCount",
+        "name": "prometheus-java_lang_Memory_ObjectPendingFinalizationCount",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "TotalPhysicalMemorySize (java.lang<type=OperatingSystem><>TotalPhysicalMemorySize)",
+        "key": "java_lang_OperatingSystem_TotalPhysicalMemorySize",
+        "name": "prometheus-java_lang_OperatingSystem_TotalPhysicalMemorySize",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=PS Old Gen><CollectionUsage>used)",
+        "key": "java_lang_MemoryPool_CollectionUsage_used",
+        "name": "prometheus-java_lang_MemoryPool_CollectionUsage_used",
+        "paramDefine": [
+            {
+                "default": "PS Old Gen",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Old Gen",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "CollectionCount (java.lang<type=GarbageCollector, name=PS Scavenge><>CollectionCount)",
+        "key": "java_lang_GarbageCollector_CollectionCount",
+        "name": "prometheus-java_lang_GarbageCollector_CollectionCount",
+        "paramDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "FreePhysicalMemorySize (java.lang<type=OperatingSystem><>FreePhysicalMemorySize)",
+        "key": "java_lang_OperatingSystem_FreePhysicalMemorySize",
+        "name": "prometheus-java_lang_OperatingSystem_FreePhysicalMemorySize",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "calculated",
+        "help": "UsedPhysicalMemoryPercentage",
+        "key": "java_lang_OperatingSystem_UsedPhysicalMemoryPercentage",
+        "name": "prometheus-java_lang_OperatingSystem_UsedPhysicalMemoryPercentage",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": "",
+        "expression": "100 - java_lang_OperatingSystem_FreePhysicalMemorySize / java_lang_OperatingSystem_TotalPhysicalMemorySize"
+    },
+    {
+        "agentType": "prometheus",
+        "help": "CompositeType for GC info for PS Scavenge (java.lang<type=GarbageCollector, name=PS Scavenge><LastGcInfo>GcThreadCount)",
+        "key": "java_lang_GarbageCollector_LastGcInfo_GcThreadCount",
+        "name": "prometheus-java_lang_GarbageCollector_LastGcInfo_GcThreadCount",
+        "paramDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "StartTime (java.lang<type=Runtime><>StartTime)",
+        "key": "java_lang_Runtime_StartTime",
+        "name": "prometheus-java_lang_Runtime_StartTime",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=Memory><NonHeapMemoryUsage>max)",
+        "key": "java_lang_Memory_NonHeapMemoryUsage_max",
+        "name": "prometheus-java_lang_Memory_NonHeapMemoryUsage_max",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Valid (java.lang<type=MemoryPool, name=Metaspace><>Valid)",
+        "key": "java_lang_MemoryPool_Valid",
+        "name": "prometheus-java_lang_MemoryPool_Valid",
+        "paramDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "Metaspace",
+                "name": "name",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS Scavenge, key=Compressed Class Space><LastGcInfo, memoryUsageBeforeGc>committed)",
+        "key": "java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed",
+        "name": "prometheus-java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed",
+        "paramDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            },
+            {
+                "default": "Compressed Class Space",
+                "name": "key",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false
+            },
+            {
+                "default": "Compressed Class Space",
+                "name": "key",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Cycles of JVM-threads that are in deadlock waiting to acquire object monitors or ownable synchronizers",
+        "key": "jvm_threads_deadlocked",
+        "name": "prometheus-jvm_threads_deadlocked",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
     },
     {
         "agentType": "prometheus",
@@ -185,132 +2061,158 @@
     },
     {
         "agentType": "prometheus",
-        "help": "Used bytes of a given JVM memory area.",
-        "key": "jvm_memory_bytes_used",
-        "name": "prometheus-jvm_memory_bytes_used",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=PS Old Gen><CollectionUsage>init)",
+        "key": "java_lang_MemoryPool_CollectionUsage_init",
+        "name": "prometheus-java_lang_MemoryPool_CollectionUsage_init",
         "paramDefine": [
             {
-                "default": "heap",
-                "name": "area",
+                "default": "PS Old Gen",
+                "name": "name",
                 "readOnly": false,
                 "valueType": "string"
             }
         ],
         "tagDefine": [
             {
-                "default": "heap",
-                "name": "area",
+                "default": "PS Old Gen",
+                "name": "name",
                 "readOnly": false
             }
         ],
-        "unit": "bytes",
         "data_type": "double",
-        "metric_type": "gauge"
+        "metric_type": "gauge",
+        "unit": ""
     },
     {
         "agentType": "prometheus",
-        "help": "Time this JMX scrape took, in seconds.",
-        "key": "jmx_scrape_duration_seconds",
-        "name": "prometheus-jmx_scrape_duration_seconds",
-        "unit": "seconds",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS Scavenge, key=Compressed Class Space><LastGcInfo, memoryUsageBeforeGc>init)",
+        "key": "java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init",
+        "name": "prometheus-java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init",
+        "paramDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false,
+                "valueType": "string"
+            },
+            {
+                "default": "Compressed Class Space",
+                "name": "key",
+                "readOnly": false,
+                "valueType": "string"
+            }
+        ],
+        "tagDefine": [
+            {
+                "default": "PS Scavenge",
+                "name": "name",
+                "readOnly": false
+            },
+            {
+                "default": "Compressed Class Space",
+                "name": "key",
+                "readOnly": false
+            }
+        ],
+        "data_type": "double",
+        "metric_type": "gauge",
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "java.lang.management.MemoryUsage (java.lang<type=Memory><HeapMemoryUsage>committed)",
+        "key": "java_lang_Memory_HeapMemoryUsage_committed",
+        "name": "prometheus-java_lang_Memory_HeapMemoryUsage_committed",
         "data_type": "double",
         "metric_type": "gauge",
         "paramDefine": [],
-        "tagDefine": []
+        "tagDefine": [],
+        "unit": ""
     },
     {
         "agentType": "prometheus",
-        "help": "Used bytes of a given JVM memory pool.",
-        "key": "jvm_memory_pool_bytes_used",
-        "name": "prometheus-jvm_memory_pool_bytes_used",
+        "help": "Count (java.nio<type=BufferPool, name=direct><>Count)",
+        "key": "java_nio_BufferPool_Count",
+        "name": "prometheus-java_nio_BufferPool_Count",
         "paramDefine": [
             {
-                "default": "Code Cache",
-                "name": "pool",
+                "default": "direct",
+                "name": "name",
                 "readOnly": false,
                 "valueType": "string"
             }
         ],
         "tagDefine": [
             {
-                "default": "Code Cache",
-                "name": "pool",
+                "default": "direct",
+                "name": "name",
                 "readOnly": false
             }
         ],
-        "unit": "bytes",
         "data_type": "double",
-        "metric_type": "gauge"
+        "metric_type": "gauge",
+        "unit": ""
     },
     {
         "agentType": "prometheus",
-        "help": "Max bytes of a given JVM memory pool.",
-        "key": "jvm_memory_pool_bytes_max",
-        "name": "prometheus-jvm_memory_pool_bytes_max",
-        "paramDefine": [
-            {
-                "default": "Code Cache",
-                "name": "pool",
-                "readOnly": false,
-                "valueType": "string"
-            }
-        ],
-        "tagDefine": [
-            {
-                "default": "Code Cache",
-                "name": "pool",
-                "readOnly": false
-            }
-        ],
-        "unit": "bytes",
+        "help": "MaxFileDescriptorCount (java.lang<type=OperatingSystem><>MaxFileDescriptorCount)",
+        "key": "java_lang_OperatingSystem_MaxFileDescriptorCount",
+        "name": "prometheus-java_lang_OperatingSystem_MaxFileDescriptorCount",
         "data_type": "double",
-        "metric_type": "gauge"
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
     },
     {
         "agentType": "prometheus",
-        "help": "Committed (bytes) of a given JVM memory area.",
-        "key": "jvm_memory_bytes_committed",
-        "name": "prometheus-jvm_memory_bytes_committed",
-        "paramDefine": [
-            {
-                "default": "heap",
-                "name": "area",
-                "readOnly": false,
-                "valueType": "string"
-            }
-        ],
-        "tagDefine": [
-            {
-                "default": "heap",
-                "name": "area",
-                "readOnly": false
-            }
-        ],
-        "unit": "bytes",
+        "help": "CommittedVirtualMemorySize (java.lang<type=OperatingSystem><>CommittedVirtualMemorySize)",
+        "key": "java_lang_OperatingSystem_CommittedVirtualMemorySize",
+        "name": "prometheus-java_lang_OperatingSystem_CommittedVirtualMemorySize",
         "data_type": "double",
-        "metric_type": "gauge"
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
     },
     {
         "agentType": "prometheus",
-        "help": "Time spent in a given JVM garbage collector in seconds.",
-        "key": "jvm_gc_collection_seconds",
-        "name": "prometheus-jvm_gc_collection_seconds",
-        "tagDefine": [
-            {
-                "name": "_key_type",
-                "readOnly": false
-            }
-        ],
-        "unit": "seconds",
+        "help": "LoadedClassCount (java.lang<type=ClassLoading><>LoadedClassCount)",
+        "key": "java_lang_ClassLoading_LoadedClassCount",
+        "name": "prometheus-java_lang_ClassLoading_LoadedClassCount",
         "data_type": "double",
-        "metric_type": "summary",
-        "paramDefine": []
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
     },
     {
         "agentType": "prometheus",
         "help": "Non-zero if this scrape failed.",
         "key": "jmx_scrape_error",
         "name": "prometheus-jmx_scrape_error",
+        "data_type": "double",
+        "metric_type": "gauge",
+        "paramDefine": [],
+        "tagDefine": [],
+        "unit": ""
+    },
+    {
+        "agentType": "prometheus",
+        "help": "Total user and system CPU time spent in seconds.",
+        "key": "process_cpu_seconds_total",
+        "name": "prometheus-process_cpu_seconds_total",
+        "unit": "seconds",
+        "data_type": "double",
+        "metric_type": "counter",
+        "paramDefine": [],
+        "tagDefine": []
+    },
+    {
+        "agentType": "prometheus",
+        "help": "PeakThreadCount (java.lang<type=Threading><>PeakThreadCount)",
+        "key": "java_lang_Threading_PeakThreadCount",
+        "name": "prometheus-java_lang_Threading_PeakThreadCount",
         "data_type": "double",
         "metric_type": "gauge",
         "paramDefine": [],
@@ -340,281 +2242,5 @@
         "unit": "bytes",
         "data_type": "double",
         "metric_type": "counter"
-    },
-    {
-        "agentType": "prometheus",
-        "help": "Bytes capacity of a given JVM buffer pool.",
-        "key": "jvm_buffer_pool_capacity_bytes",
-        "name": "prometheus-jvm_buffer_pool_capacity_bytes",
-        "paramDefine": [
-            {
-                "default": "direct",
-                "name": "pool",
-                "readOnly": false,
-                "valueType": "string"
-            }
-        ],
-        "tagDefine": [
-            {
-                "default": "direct",
-                "name": "pool",
-                "readOnly": false
-            }
-        ],
-        "unit": "bytes",
-        "data_type": "double",
-        "metric_type": "gauge"
-    },
-    {
-        "agentType": "prometheus",
-        "help": "Used bytes of a given JVM buffer pool.",
-        "key": "jvm_buffer_pool_used_bytes",
-        "name": "prometheus-jvm_buffer_pool_used_bytes",
-        "paramDefine": [
-            {
-                "default": "direct",
-                "name": "pool",
-                "readOnly": false,
-                "valueType": "string"
-            }
-        ],
-        "tagDefine": [
-            {
-                "default": "direct",
-                "name": "pool",
-                "readOnly": false
-            }
-        ],
-        "unit": "bytes",
-        "data_type": "double",
-        "metric_type": "gauge"
-    },
-    {
-        "agentType": "prometheus",
-        "help": "Peak thread count of a JVM",
-        "key": "jvm_threads_peak",
-        "name": "prometheus-jvm_threads_peak",
-        "data_type": "double",
-        "metric_type": "gauge",
-        "paramDefine": [],
-        "tagDefine": [],
-        "unit": ""
-    },
-    {
-        "agentType": "prometheus",
-        "help": "The number of classes that are currently loaded in the JVM",
-        "key": "jvm_classes_loaded",
-        "name": "prometheus-jvm_classes_loaded",
-        "data_type": "double",
-        "metric_type": "gauge",
-        "paramDefine": [],
-        "tagDefine": [],
-        "unit": ""
-    },
-    {
-        "agentType": "prometheus",
-        "help": "Current count of threads by state",
-        "key": "jvm_threads_state",
-        "name": "prometheus-jvm_threads_state",
-        "paramDefine": [
-            {
-                "default": "BLOCKED",
-                "name": "state",
-                "readOnly": false,
-                "valueType": "string"
-            }
-        ],
-        "tagDefine": [
-            {
-                "default": "BLOCKED",
-                "name": "state",
-                "readOnly": false
-            }
-        ],
-        "data_type": "double",
-        "metric_type": "gauge",
-        "unit": ""
-    },
-    {
-        "agentType": "prometheus",
-        "help": "Committed bytes of a given JVM memory pool.",
-        "key": "jvm_memory_pool_bytes_committed",
-        "name": "prometheus-jvm_memory_pool_bytes_committed",
-        "paramDefine": [
-            {
-                "default": "Code Cache",
-                "name": "pool",
-                "readOnly": false,
-                "valueType": "string"
-            }
-        ],
-        "tagDefine": [
-            {
-                "default": "Code Cache",
-                "name": "pool",
-                "readOnly": false
-            }
-        ],
-        "unit": "bytes",
-        "data_type": "double",
-        "metric_type": "gauge"
-    },
-    {
-        "agentType": "prometheus",
-        "help": "Current thread count of a JVM",
-        "key": "jvm_threads_current",
-        "name": "prometheus-jvm_threads_current",
-        "data_type": "double",
-        "metric_type": "gauge",
-        "paramDefine": [],
-        "tagDefine": [],
-        "unit": ""
-    },
-    {
-        "agentType": "prometheus",
-        "help": "Cycles of JVM-threads that are in deadlock waiting to acquire object monitors",
-        "key": "jvm_threads_deadlocked_monitor",
-        "name": "prometheus-jvm_threads_deadlocked_monitor",
-        "data_type": "double",
-        "metric_type": "gauge",
-        "paramDefine": [],
-        "tagDefine": [],
-        "unit": ""
-    },
-    {
-        "agentType": "prometheus",
-        "help": "Initial bytes of a given JVM memory pool.",
-        "key": "jvm_memory_pool_bytes_init",
-        "name": "prometheus-jvm_memory_pool_bytes_init",
-        "paramDefine": [
-            {
-                "default": "Code Cache",
-                "name": "pool",
-                "readOnly": false,
-                "valueType": "string"
-            }
-        ],
-        "tagDefine": [
-            {
-                "default": "Code Cache",
-                "name": "pool",
-                "readOnly": false
-            }
-        ],
-        "unit": "bytes",
-        "data_type": "double",
-        "metric_type": "gauge"
-    },
-    {
-        "agentType": "prometheus",
-        "help": "The total number of classes that have been unloaded since the JVM has started execution",
-        "key": "jvm_classes_unloaded_total",
-        "name": "prometheus-jvm_classes_unloaded_total",
-        "data_type": "double",
-        "metric_type": "counter",
-        "paramDefine": [],
-        "tagDefine": [],
-        "unit": ""
-    },
-    {
-        "agentType": "prometheus",
-        "help": "Daemon thread count of a JVM",
-        "key": "jvm_threads_daemon",
-        "name": "prometheus-jvm_threads_daemon",
-        "data_type": "double",
-        "metric_type": "gauge",
-        "paramDefine": [],
-        "tagDefine": [],
-        "unit": ""
-    },
-    {
-        "agentType": "prometheus",
-        "help": "The total number of classes that have been loaded since the JVM has started execution",
-        "key": "jvm_classes_loaded_total",
-        "name": "prometheus-jvm_classes_loaded_total",
-        "data_type": "double",
-        "metric_type": "counter",
-        "paramDefine": [],
-        "tagDefine": [],
-        "unit": ""
-    },
-    {
-        "agentType": "prometheus",
-        "help": "Started thread count of a JVM",
-        "key": "jvm_threads_started_total",
-        "name": "prometheus-jvm_threads_started_total",
-        "data_type": "double",
-        "metric_type": "counter",
-        "paramDefine": [],
-        "tagDefine": [],
-        "unit": ""
-    },
-    {
-        "agentType": "prometheus",
-        "help": "Number of times configuration have failed to be reloaded.",
-        "key": "jmx_config_reload_failure_total",
-        "name": "prometheus-jmx_config_reload_failure_total",
-        "data_type": "double",
-        "metric_type": "counter",
-        "paramDefine": [],
-        "tagDefine": [],
-        "unit": ""
-    },
-    {
-        "agentType": "prometheus",
-        "help": "Number of times configuration have successfully been reloaded.",
-        "key": "jmx_config_reload_success_total",
-        "name": "prometheus-jmx_config_reload_success_total",
-        "data_type": "double",
-        "metric_type": "counter",
-        "paramDefine": [],
-        "tagDefine": [],
-        "unit": ""
-    },
-    {
-        "agentType": "prometheus",
-        "help": "JVM version info",
-        "key": "jvm_info",
-        "name": "prometheus-jvm_info",
-        "paramDefine": [
-            {
-                "default": "1.8.0_242-b08",
-                "name": "version",
-                "readOnly": false,
-                "valueType": "string"
-            },
-            {
-                "default": "Oracle Corporation",
-                "name": "vendor",
-                "readOnly": false,
-                "valueType": "string"
-            },
-            {
-                "default": "OpenJDK Runtime Environment",
-                "name": "runtime",
-                "readOnly": false,
-                "valueType": "string"
-            }
-        ],
-        "tagDefine": [
-            {
-                "default": "1.8.0_242-b08",
-                "name": "version",
-                "readOnly": false
-            },
-            {
-                "default": "Oracle Corporation",
-                "name": "vendor",
-                "readOnly": false
-            },
-            {
-                "default": "OpenJDK Runtime Environment",
-                "name": "runtime",
-                "readOnly": false
-            }
-        ],
-        "data_type": "double",
-        "metric_type": "gauge",
-        "unit": ""
     }
 ]
