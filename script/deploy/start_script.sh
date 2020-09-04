@@ -5,24 +5,24 @@ if ! type getopt >/dev/null 2>&1 ; then
   exit 1
 fi
 
-getopt_cmd=`getopt -o h -a -l help,jar-path:,exporter-host:,exporter-port: -n "start.sh" -- "$@"`
+getopt_cmd=`getopt -o h -a -l help,config-file-path:,exporter-host:,exporter-port: -n "start.sh" -- "$@"`
 if [ $? -ne 0 ] ; then
     exit 1
 fi
 eval set -- "$getopt_cmd"
 
-jar_path=""
+config_file_path="conf/httpserver_sample_config.yml"
 exporter_host="127.0.0.1"
 exporter_port=8989
 
 print_help() {
     echo "Usage:"
     echo "    start_script.sh [options]"
-    echo "    start_script.sh --jar-path /your-jar-package [options]"
+    echo "    start_script.sh --config-file-path conf/httpserver_sample_config.yml [options]"
     echo ""
     echo "Options:"
     echo "  -h, --help                 show help"
-    echo "      --jar-path             the path of your jar package"
+    echo "      --config-file-path     the path of config file (\"conf/httpserver_sample_config.yml\")"
     echo "      --exporter-host        the listen address of exporter (\"127.0.0.1\" by default)"
     echo "      --exporter-port        the listen port of exporter (8989 by default)"
 }
@@ -35,13 +35,13 @@ do
             shift 1
             exit 0
             ;;
-        --jar-path)
+        --config-file-path)
             case "$2" in
                 "")
                     shift 2  
                     ;;
                 *)
-                    jar_path="$2"
+                    config_file_path="$2"
                     shift 2;
                     ;;
             esac
@@ -81,11 +81,4 @@ do
     esac
 done
 
-if [ -f exporter.pid ]; then
-    echo "The JMX exporter has already started."
-    exit 0
-fi
-
-java -javaagent:./src/jmx_prometheus_javaagent.jar=$exporter_host:$exporter_port:./src/jmx.yaml -jar $jar_path &
-
-echo $! > exporter.pid
+java -jar src/jmx_prometheus_httpserver.jar $exporter_port $config_file_path &

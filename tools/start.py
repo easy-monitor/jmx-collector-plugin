@@ -18,7 +18,7 @@ def run_command(command, env={}, shell=False, close_fds=True):
 
 if __name__ == '__main__':
     argument_map = {
-        '--jar-path': 'jar_path',
+        '--config-file-path': 'config_file_path',
         '--exporter-host': 'exporter_host',
         '--exporter-port': 'exporter_port'
     }

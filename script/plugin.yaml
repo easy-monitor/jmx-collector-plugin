@@ -6,6 +6,6 @@ version: 1.0.0
 
 category: 中间件
 params:
-    - jar_path
+    - config-file-path
     - exporter_host
     - exporter_port

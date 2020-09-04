@@ -5,7 +5,7 @@ start_component_params: ""
 stop_component: ""
 stop_component_params: ""
 proc_list:
-- proc_name: jmx_prometheus_javaagent.jar
+- proc_name: jmx_prometheus
   proc_num_min: ~
   proc_num_max: ~
   pid_file: ~
@@ -33,7 +33,7 @@ start_script: |
   
   if __name__ == '__main__':
       argument_map = {
-          '--jar-path': 'jar_path',
+          '--config-file-path': 'config_file_path',
           '--exporter-host': 'exporter_host',
           '--exporter-port': 'exporter_port'
       }
@@ -51,31 +51,7 @@ user_pre_check_script: ""
 user_pre_check_script_type: shell
 user_check_script: ""
 user_check_script_type: shell
-stop_script: |
-  #!/usr/local/easyops/python/bin/python
-  # -*- coding: UTF-8 -*-
-
-  import os
-  import subprocess
-
-
-  def run_command(command, shell=False, close_fds=True):
-      process = subprocess.Popen(
-          command,
-          shell=shell,
-          close_fds=close_fds,
-          stdout=subprocess.PIPE,
-          stderr=subprocess.PIPE,
-      )
-      process.wait()
-      output, err = process.communicate()
-
-      result = err or output
-      return process.returncode, result
-
-
-  if __name__ == "__main__":
-      run_command('sh ./deploy/stop_script.sh', True)
+stop_script: ""
 stop_script_type: python
 monitor_script: ""
 user: root
