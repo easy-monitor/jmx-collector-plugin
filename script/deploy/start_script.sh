@@ -1,15 +1,25 @@
 #!/bin/bash
 
+
+PACKAGE_NAME=jmx-collector-plugin
+PACKAGE_PATH=$(dirname $(dirname "$(cd `dirname $0`; pwd)"))
+LOG_DIRECTORY=$PACKAGE_PATH/log
+LOG_FILE=$LOG_DIRECTORY/$PACKAGE_NAME.log
+
+
 if ! type getopt >/dev/null 2>&1 ; then
-  echo "Error: command \"getopt\" is not found" >&2
+  message="command \"getopt\" is not found"
+  echo "[ERROR] Message: $message" >& 2
+  echo "$(date "+%Y-%m-%d %H:%M:%S") [ERROR] Message: $message" > $LOG_FILE
   exit 1
 fi
 
-getopt_cmd=`getopt -o h -a -l help,config-file-path:,exporter-host:,exporter-port: -n "start.sh" -- "$@"`
+getopt_cmd=`getopt -o h -a -l help:,config-file-path:,exporter-host:,exporter-port: -n "start_script.sh" -- "$@"`
 if [ $? -ne 0 ] ; then
     exit 1
 fi
 eval set -- "$getopt_cmd"
+
 
 config_file_path="conf/httpserver_sample_config.yml"
 exporter_host="127.0.0.1"
@@ -73,12 +83,20 @@ do
             break
             ;;
         *)
-            echo "Error: argument \"$1\" is invalid" >&2
-            echo ""
+            message="argument \"$1\" is invalid"
+            echo "[ERROR] Message: $message" >& 2
+            echo "$(date "+%Y-%m-%d %H:%M:%S") [ERROR] Message: $message" > $LOG_FILE
             print_help
             exit 1
             ;;
     esac
 done
 
-java -jar src/jmx_prometheus_httpserver.jar $exporter_port $config_file_path &
+mkdir -p $LOG_DIRECTORY
+
+message="start exporter"
+echo "[INFO] Message: $message"
+echo "$(date "+%Y-%m-%d %H:%M:%S") [INFO] Message: $message" >> $LOG_FILE
+
+cd $PACKAGE_PATH/script
+java -jar src/jmx_prometheus_httpserver.jar $exporter_host:$exporter_port $config_file_path 2>&1 | tee -a $LOG_FILE
