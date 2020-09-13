@@ -1,9 +1,8 @@
 [
     {
         "_object_id": "_DASHBOARD",
-        "instanceId": "5ae135d33adbf",
-        "name": "JVM 监控",
         "namespace": "resource-monitor.APP",
+        "name": "JVM 监控",
         "panels": [
             {
                 "brickConf": "{\"brick\":\"chart-v2.gauge-chart\",\"properties\":{\"showCard\":false,\"height\":100,\"yField\":\"percent\",\"thresholdColors\":[{\"value\":50,\"color\":\"#0086FA\"},{\"value\":90,\"color\":\"#FFBF00\"},{\"value\":100,\"color\":\"#F5222D\"}],\"axis\":{\"yAxis\":{\"min\":0,\"max\":100,\"unit\":\"%\"}}},\"lifeCycle\":{\"useResolves\":[{\"provider\":\"providers-of-data-exchange.olap-api-select\",\"args\":[{\"model\":\"<% \\\"easyops.\\\" + PARAMS.get(\\\"objectId\\\") %>\",\"statements\":[{\"name\":\"java_lang_operatingsystem_usedphysicalmemorypercentage\",\"alias\":\"java_lang_operatingsystem_usedphysicalmemorypercentage\"}],\"filters\":[{\"name\":\"instanceId\",\"operator\":\"==\",\"value\":\"${QUERY.instanceId|string}\"},{\"name\":\"time\",\"operator\":\">=\",\"value\":\"now-5m\"},{\"name\":\"java_lang_operatingsystem_usedphysicalmemorypercentage\",\"operator\":\"!=\",\"value\":null}],\"order\":[{\"name\":\"time\",\"order\":\"desc\"}],\"limit\":{\"limit\":1}}],\"transform\":{\"data\":[{\"item\":\"内存使用率\",\"percent\":\"<% _.get(DATA.list, \\\"[0].java_lang_operatingsystem_usedphysicalmemorypercentage\\\") %>\"}]},\"onReject\":{\"transform\":{\"error\":\"<% DATA.message || '接口请求错误' %>\"}}}]}}",

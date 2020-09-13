@@ -6,6 +6,6 @@ version: 1.0.0
 
 category: 中间件
 params:
-    - config-file-path
+    - config_file_path
     - exporter_host
     - exporter_port
