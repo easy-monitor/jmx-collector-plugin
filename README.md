@@ -97,6 +97,18 @@ $ export PATH=/usr/local/easyops/jdk/bin:$PATH
 | exporter-host | string | false | 127.0.0.1 | Exporter 监听地址 |
 | exporter-port | int | false | 8989 | Exporter 监听端口 |
 
+## 可能报错
+1. Connection refused to host: 127.0.0.1
+```bash
+Oct 18, 2020 11:00:56 PM io.prometheus.jmx.JmxCollector collect
+SEVERE: JMX scrape failed: java.rmi.ConnectException: Connection refused to host: 127.0.0.1; nested exception is: 
+        java.net.ConnectException: Connection refused (Connection refused)
+        at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:619)
+        at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:216)
+```
+
+见 https://github.com/prometheus/jmx_exporter/issues/346 解释，你的业务程序在开启JMX端口的时候指定的-Djava.rmi.server.hostname不对，如果是jmx_exporter与业务程序不在同一机器，请指定为**业务机器**的内网IP，如`-Djava.rmi.server.hostname=10.1.173.243`
+
 ## 项目内容
 
 ### 目录结构
