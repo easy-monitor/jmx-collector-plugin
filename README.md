@@ -107,7 +107,7 @@ SEVERE: JMX scrape failed: java.rmi.ConnectException: Connection refused to host
         at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:216)
 ```
 
-见 https://github.com/prometheus/jmx_exporter/issues/346 解释，你的业务程序在开启JMX端口的时候指定的-Djava.rmi.server.hostname不对，如果是jmx_exporter与业务程序不在同一机器，请指定为业务机器的内网IP，如`-Djava.rmi.server.hostname=10.1.173.243`
+见 https://github.com/prometheus/jmx_exporter/issues/346 解释，你的业务程序在开启JMX端口的时候指定的-Djava.rmi.server.hostname不对，如果是jmx_exporter与业务程序不在同一机器，请指定为**业务机器**的内网IP，如`-Djava.rmi.server.hostname=10.1.173.243`
 
 ## 项目内容
 
