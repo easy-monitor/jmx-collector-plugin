@@ -39,13 +39,13 @@ EasyOps JMX 监控插件包是适用于 EasyOps 新版监控平台，专门提�
 
 1. 确认采集的 Java 应用启用了 JMX。
 
-    a. 对于以 Jar 包方式直接启动的 Java 应用（例如 Spring Boot 应用），通过在启动命令中加入相关参数来启用 JMX。类似命令如下，请替换其中的 `$HOSTNAME` 和 `$PORT` 为 JMX 具体的监听地址和端口。
+    a. 对于以 Jar 包方式直接启动的 Java 应用（例如 Spring Boot 应用），通过在启动命令中加入相关参数来启用 JMX。类似命令如下，请替换其中的 `$HOSTNAME` 和 `$PORT` 为 JMX 具体的内网地址和端口。注意：`java.rmi.server.hostname`不要写成0.0.0.1或者127.0.0.1
 
     ```sh
     $ java -Djava.rmi.server.hostname=$HOSTNAME -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=$PORT -Dcom.sun.management.jmxremote.rmi.port=$PORT -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -jar /PATH/OF/YOUR/JAR/PACKAGE
     ```
 
-    b. Tomcat 可通过在 `/$TOMCAT_HOME/bin/setenv.sh` （默认不存在，可直接新建该文件）中增加以下配置来启用 JMX。具体配置如下，请替换其中的 `$HOSTNAME` 和 `$PORT` 为 JMX 具体的监听地址和端口。
+    b. Tomcat 可通过在 `/$TOMCAT_HOME/bin/setenv.sh` （默认不存在，可直接新建该文件）中增加以下配置来启用 JMX。具体配置如下，请替换其中的 `$HOSTNAME` 和 `$PORT` 为 JMX 具体的内网地址和端口。注意：`java.rmi.server.hostname`不要写成0.0.0.1或者127.0.0.1
 
     ```sh
     CATALINA_OPTS="$CATALINA_OPTS -Djava.rmi.server.hostname=$HOSTNAME -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=$PORT -Dcom.sun.management.jmxremote.rmi.port=$PORT -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false"
